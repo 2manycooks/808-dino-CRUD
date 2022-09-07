@@ -2,6 +2,8 @@
 const express = require('express')
 const layout = require('express-ejs-layouts')
 const fs = require('fs')
+const methodOverride = require("method-override");
+
 
 // express app config
 const app = express()
@@ -10,6 +12,7 @@ app.set('view engine', 'ejs')
 app.use(layout)
 // tell express to listen for request bodies sent from HTML forms
 app.use(express.urlencoded({ extended: false }))
+app.use(methodOverride("_method"));
 
 // get the dinos from the db
 const readDinoFile = () => {
@@ -65,6 +68,22 @@ app.get('/dinosaurs/:id', (req, res) => {
     const dino = dinoData[req.params.id]
     // send back a single dino
     res.render('dinos/show.ejs', {myDino: dino})
+})
+
+// DELETE /dinosaurs/:id -- delete a specific dinosaur from the database
+app.delete('/dinosaurs/:id', (req,res) => {
+    const dinoData = readDinoFile()
+    const dino = dinoData[req.params.id]
+
+    // remove a dinosaur from the array
+    // .splice is an array method that takes 2 arguments:
+    // array.splice(indexToBeginAt, # of things to remove)
+    dinoData.splice(req.params.id, 1)
+
+    // save the new dinosaurs to the dinosaurs.json file
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+
+    res.redirect('/dinosaurs')
 })
 
 
