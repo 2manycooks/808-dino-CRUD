@@ -1,11 +1,17 @@
 <h2>Index of all Creatures:</h2>
 
-<% creatures.forEach(creature => { %>
+<% creatures.forEach((creature, idx) => { %>
     <div>
 
         <h3>
             <%= creature.type %>
         </h3>
         <img width="500" src="<%= creature.img_url %>" alt="<%= creature.img_url %>" />
+
+        <form method="POST" action="/prehistoric_creatures/<%= idx %>/?_method=DELETE">
+            <input type="submit" value="Delete">
+        </form>
+
+        <a href="/prehistoric_creatures/edit/<%= idx %>">edit</a>
     </div>
 <% }) %>

@@ -68,4 +68,23 @@ router.delete('/:id', (req,res) => {
     res.redirect('/prehistoric_creatures')
 })
 
+// GET our update form
+router.get('/edit/:id', (req,res) => {
+    const creatureData = readCreatureFile()
+    const creature = creatureData[req.params.id]
+
+    res.render('creatures/edit.ejs', {myCreature: creature, creatureId: req.params.id})
+})
+
+// PUT our new edited data into our database
+router.put('/:id', (req,res) => {
+    const creatureData = readCreatureFile()
+
+    creatureData[req.params.id].name = req.body.name
+    creatureData[req.params.id].type = req.body.type
+
+    fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
+    res.redirect('/prehistoric_creatures')
+})
+
 module.exports = router
