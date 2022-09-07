@@ -1,0 +1,11 @@
+<h2>Index of all Creatures:</h2>
+
+<% creatures.forEach(creature => { %>
+    <div>
+
+        <h3>
+            <%= creature.type %>
+        </h3>
+        <img width="500" src="<%= creature.img_url %>" alt="<%= creature.img_url %>" />
+    </div>
+<% }) %>
