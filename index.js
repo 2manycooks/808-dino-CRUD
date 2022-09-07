@@ -85,6 +85,28 @@ app.delete('/dinosaurs/:id', (req,res) => {
     res.redirect('/dinosaurs')
 })
 
+// GET our update form
+app.get('/dinosaurs/edit/:id', (req,res) => {
+    const dinoData = readDinoFile()
+    const dino = dinoData[req.params.id]
+
+    res.render('dinos/edit.ejs', {myDino: dino, dinoId: req.params.id})
+})
+
+// PUT our new edited data into our database
+app.put('/dinosaurs/:id', (req,res) => {
+    const dinoData = readDinoFile()
+
+    // reassign the name and type of the dinosaur we are editing
+    dinoData[req.params.id].name = req.body.name
+    dinoData[req.params.id].type = req.body.type
+
+    // save the edited dinosaurs to the dinosaur.json file
+    fs.writeFileSync('./dinosaurs.json', JSON.stringify(dinoData))
+    res.redirect('/dinosaurs')
+
+})
+
 
 // listen on a port
 app.listen(PORT, () => console.log(`is that dinos i hear on port ${PORT} 🦕`))
