@@ -33,6 +33,7 @@ router.post('/', (req, res) => {
     const dinoData = readDinoFile()
     // payload of data from the request body (req.body)
     // push the data payload into the array of dinos
+    // console.log(req)
     console.log(req.body)
     dinoData.push(req.body)
     // save the dino file

@@ -80,7 +80,7 @@ router.get('/edit/:id', (req,res) => {
 router.put('/:id', (req,res) => {
     const creatureData = readCreatureFile()
 
-    creatureData[req.params.id].name = req.body.name
+    creatureData[req.params.id].img_url = req.body.img_url
     creatureData[req.params.id].type = req.body.type
 
     fs.writeFileSync('./prehistoric_creatures.json', JSON.stringify(creatureData))
