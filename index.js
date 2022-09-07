@@ -73,7 +73,6 @@ app.get('/dinosaurs/:id', (req, res) => {
 // DELETE /dinosaurs/:id -- delete a specific dinosaur from the database
 app.delete('/dinosaurs/:id', (req,res) => {
     const dinoData = readDinoFile()
-    const dino = dinoData[req.params.id]
 
     // remove a dinosaur from the array
     // .splice is an array method that takes 2 arguments:
