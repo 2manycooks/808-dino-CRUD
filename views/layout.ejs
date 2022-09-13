@@ -2,28 +2,44 @@
 <html>
     <head>
         <title>Dino CRUD 🦖💩</title>
+        <link rel="stylesheet" href="../style.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     </head>
     <body>
         <nav>
-            <ul>
-                <li>
-                    <a href="/dinosaurs">all dinos</a>
-                </li>
 
-                <li>
-                    <a href="/dinosaurs/new">new dino form</a>
-                </li>
-                <li>
-                    <a href="/prehistoric_creatures">all creatures</a>
-                </li>
-
-                <li>
-                    <a href="/prehistoric_creatures/new">new creature form</a>
-                </li>
-            </ul>
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Navigate the dino site!
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="/dinosaurs">all dinos</a>
+                    </li>
+    
+                    <li>
+                        <a href="/dinosaurs/new">new dino form</a>
+                    </li>
+                    <li>
+                        <a href="/prehistoric_creatures">all creatures</a>
+                    </li>
+    
+                    <li>
+                        <a href="/prehistoric_creatures/new">new creature form</a>
+                    </li>
+                </ul>
+              </div> 
         </nav>
 
-        <h1>LOVE THEM DINOS 🦕 🖤</h1>
+        <button type="button" class="btn btn-dark" id="home-btn">
+            <a href="/">Home</a>
+        </button>
+
+        <div class="alert alert-info" role="alert">
+            <h1>LOVE THEM DINOS 🦕 🖤</h1>
+        </div>
+        
 
         <%- body %>
     </body>
